@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Creators Community - Home</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <a href="{% url 'index' %}" class="logo">🎨 Manga Creators</a>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+            </ul>
+            <div class="auth-buttons">
+                {% if user.is_authenticated %}
+                <span style="color: var(--text-light); font-weight: 500;">Welcome, {{ user.username }}!</span>
+                <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-accent">Register</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Messages (alerts for user feedback) -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Welcome to Manga Creators Community</h1>
+            <p>Discover, discuss, and celebrate your favorite manga and anime characters with fellow enthusiasts.</p>
+        </section>
+
+        <!-- Latest Post Section -->
+        <section>
+            <h2>Latest Discussion Post</h2>
+            {% if latest_post %}
+            <div class="two-panel">
+                <div class="panel-left">
+                    <div class="image-panel">
+                        <div>
+                            <div class="image-icon">📚</div>
+                            <p>Manga Discussion</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-right">
+                    <div class="card">
+                        <div class="card-image">
+                            {% if latest_post.image %}
+                            <img src="{{ latest_post.image.url }}" alt="{{ latest_post.title }}">
+                            {% else %}
+                            <div style="font-size: 4rem;">📖</div>
+                            {% endif %}
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">{{ latest_post.title }}</h3>
+                            <p class="card-description">{{ latest_post.description|truncatewords:30 }}</p>
+                            <p class="card-meta">
+                                By <strong>{{ latest_post.author.username }}</strong><br>
+                                {{ latest_post.created_at|date:"M d, Y \a\t H:i" }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="two-panel">
+                <div class="panel-left">
+                    <div class="image-panel accent">
+                        <div>
+                            <div class="image-icon">✨</div>
+                            <p>Be the First to Post!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-right">
+                    <div class="card">
+                        <div class="card-image">
+                            <div style="font-size: 4rem;">🚀</div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">No Posts Yet</h3>
+                            <p class="card-description">
+                                Be the first to start a discussion! Create an account, log in, and share your favorite
+                                manga or anime characters with our community.
+                            </p>
+                            {% if not user.is_authenticated %}
+                            <p class="card-meta">
+                                <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </section>
+
+        <!-- Community Features Section -->
+        <section>
+            <h2>Join Our Community</h2>
+            <p>Connect with other manga and anime enthusiasts, share your thoughts, and celebrate your favorite
+                characters.</p>
+
+            <div class="card-grid">
+                <!-- Feature Card 1 -->
+                <div class="card">
+                    <div class="card-image">
+                        <div style="font-size: 3rem;">👥</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Community First</h3>
+                        <p class="card-description">
+                            Connect with thousands of manga and anime fans from around the world.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="card">
+                    <div class="card-image">
+                        <div style="font-size: 3rem;">💬</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Share & Discuss</h3>
+                        <p class="card-description">
+                            Post about your favorite characters and engage in meaningful discussions.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="card">
+                    <div class="card-image">
+                        <div style="font-size: 3rem;">🎨</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Creative Expression</h3>
+                        <p class="card-description">
+                            Express your love for manga through discussions, fan art recommendations, and more.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="text-center">
+            {% if not user.is_authenticated %}
+            <h2>Ready to Join?</h2>
+            <p>Start your manga discussion journey today!</p>
+            <div style="margin-top: 2rem;">
+                <a href="{% url 'register' %}" class="btn btn-accent" style="margin-right: 1rem;">Create Account</a>
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            </div>
+            {% else %}
+            <h2>Welcome Back!</h2>
+            <p>Explore the community and share your favorite manga/anime characters.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Manga Creators Community. All rights reserved.</p>
+        <p>Celebrating manga and anime culture together.</p>
+    </footer>
+</body>
+
+</html>

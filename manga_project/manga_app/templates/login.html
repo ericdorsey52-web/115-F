@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Manga Creators Community</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <a href="{% url 'index' %}" class="logo">🎨 Manga Creators</a>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+            </ul>
+            <div class="auth-buttons">
+                {% if user.is_authenticated %}
+                <span style="color: var(--text-light); font-weight: 500;">Welcome, {{ user.username }}!</span>
+                <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+                {% else %}
+                <a href="{% url 'register' %}" class="btn btn-accent">Register</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Messages (alerts for user feedback) -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Login Section -->
+        <section class="container">
+            <div class="two-panel">
+                <!-- Left Panel: Visual Content -->
+                <div class="panel-left">
+                    <div class="image-panel accent">
+                        <div>
+                            <div style="font-size: 5rem; margin-bottom: 1rem;">🔐</div>
+                            <h2 style="color: var(--white); margin-bottom: 1rem;">Welcome Back!</h2>
+                            <p style="color: var(--white); font-size: 1.1rem;">Sign in to your account and continue
+                                your manga discussion journey.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Login Form -->
+                <div class="panel-right">
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+
+                        <h2 style="margin-bottom: 2rem; color: var(--primary-blue);">Login to Your Account</h2>
+
+                        <!-- Username Field -->
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" placeholder="Enter your username" required
+                                autofocus>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password"
+                                required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">
+                            Sign In
+                        </button>
+
+                        <!-- Register Link -->
+                        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-light);">
+                            Don't have an account?
+                            <a href="{% url 'register' %}"
+                                style="color: var(--primary-blue); font-weight: 600;">Register here</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section style="margin-top: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">What You Can Do When Logged In</h2>
+
+            <div class="card-grid">
+                <!-- Feature 1 -->
+                <div class="card">
+                    <div class="card-image">
+                        <div style="font-size: 3rem;">📝</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Create Posts</h3>
+                        <p class="card-description">
+                            Share your thoughts on your favorite manga and anime characters.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="card">
+                    <div class="card-image accent">
+                        <div style="font-size: 3rem; color: var(--white);">💬</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Join Discussions</h3>
+                        <p class="card-description">
+                            Engage with other community members and share your opinions.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, var(--secondary-gray) 0%, var(--secondary-silver) 100%);">
+                        <div style="font-size: 3rem;">🌐</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Build Profile</h3>
+                        <p class="card-description">
+                            Create your unique profile and connect with fellow manga enthusiasts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Manga Creators Community. All rights reserved.</p>
+        <p>Celebrating manga and anime culture together.</p>
+    </footer>
+</body>
+
+</html>

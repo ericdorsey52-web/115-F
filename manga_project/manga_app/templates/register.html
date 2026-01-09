@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Manga Creators Community</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <a href="{% url 'index' %}" class="logo">🎨 Manga Creators</a>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+            </ul>
+            <div class="auth-buttons">
+                {% if user.is_authenticated %}
+                <span style="color: var(--text-light); font-weight: 500;">Welcome, {{ user.username }}!</span>
+                <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Messages (alerts for user feedback) -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Registration Section -->
+        <section class="container">
+            <div class="two-panel">
+                <!-- Left Panel: Visual Content -->
+                <div class="panel-left">
+                    <div class="image-panel">
+                        <div>
+                            <div style="font-size: 5rem; margin-bottom: 1rem;">✨</div>
+                            <h2 style="color: var(--white); margin-bottom: 1rem;">Join Our Community</h2>
+                            <p style="color: var(--white); font-size: 1.1rem;">Create an account to connect with manga
+                                and anime enthusiasts worldwide.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Registration Form -->
+                <div class="panel-right">
+                    <form method="post" action="{% url 'register' %}">
+                        {% csrf_token %}
+
+                        <h2 style="margin-bottom: 2rem; color: var(--primary-blue);">Create Your Account</h2>
+
+                        <!-- Username Field -->
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" placeholder="Choose a unique username"
+                                required>
+                            <p class="small text-muted" style="margin-top: 0.25rem;">
+                                3-30 characters, letters, numbers, and underscores only.
+                            </p>
+                        </div>
+
+                        <!-- Email Field -->
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                            <p class="small text-muted" style="margin-top: 0.25rem;">
+                                We'll use this to verify your account.
+                            </p>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Create a strong password"
+                                required>
+                            <p class="small text-muted" style="margin-top: 0.25rem;">
+                                At least 8 characters recommended for security.
+                            </p>
+                        </div>
+
+                        <!-- Confirm Password Field -->
+                        <div class="form-group">
+                            <label for="password_confirm">Confirm Password</label>
+                            <input type="password" id="password_confirm" name="password_confirm"
+                                placeholder="Re-enter your password" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">
+                            Create Account
+                        </button>
+
+                        <!-- Login Link -->
+                        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-light);">
+                            Already have an account?
+                            <a href="{% url 'login' %}" style="color: var(--primary-blue); font-weight: 600;">Login
+                                here</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Join Section -->
+        <section style="margin-top: 4rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Why Join Us?</h2>
+
+            <div class="card-grid">
+                <!-- Reason 1 -->
+                <div class="card">
+                    <div class="card-image">
+                        <div style="font-size: 3rem;">🌟</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Connect</h3>
+                        <p class="card-description">
+                            Meet fellow manga and anime enthusiasts from all around the world.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Reason 2 -->
+                <div class="card">
+                    <div class="card-image accent">
+                        <div style="font-size: 3rem; color: var(--white);">💡</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Share Ideas</h3>
+                        <p class="card-description">
+                            Discuss your favorite characters and discover new recommendations.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Reason 3 -->
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, var(--secondary-gray) 0%, var(--secondary-silver) 100%);">
+                        <div style="font-size: 3rem;">🎯</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Be Creative</h3>
+                        <p class="card-description">
+                            Express yourself and celebrate manga culture with our welcoming community.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Manga Creators Community. All rights reserved.</p>
+        <p>Celebrating manga and anime culture together.</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,287 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Manga Creators Community</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav>
+            <a href="{% url 'index' %}" class="logo">🎨 Manga Creators</a>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+            </ul>
+            <div class="auth-buttons">
+                {% if user.is_authenticated %}
+                <span style="color: var(--text-light); font-weight: 500;">Welcome, {{ user.username }}!</span>
+                <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-accent">Register</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>About Manga Creators Community</h1>
+            <p>A welcoming platform for manga and anime enthusiasts to connect, discuss, and celebrate their favorite
+                characters.</p>
+        </section>
+
+        <!-- Our Mission Section -->
+        <section class="container">
+            <div class="two-panel">
+                <div class="panel-left">
+                    <div class="image-panel">
+                        <div>
+                            <div style="font-size: 5rem; margin-bottom: 1rem;">🎯</div>
+                            <h3 style="color: var(--white); font-size: 1.5rem;">Our Mission</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-right">
+                    <div>
+                        <h2 style="color: var(--primary-blue); margin-bottom: 1rem;">Building a Thriving Community</h2>
+                        <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-dark); margin-bottom: 1rem;">
+                            The Manga Creators Community was founded to bring together passionate manga and anime fans
+                            from around the world. Our mission is to create a safe, inclusive, and welcoming space
+                            where fans can:
+                        </p>
+                        <ul style="margin-left: 1.5rem; margin-bottom: 1rem; line-height: 2;">
+                            <li><strong>Share</strong> their love for manga and anime characters</li>
+                            <li><strong>Discover</strong> new recommendations and discussions</li>
+                            <li><strong>Connect</strong> with fellow enthusiasts who share their passion</li>
+                            <li><strong>Express</strong> their creativity through thoughtful discussions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Guidelines Section -->
+        <section style="margin-top: 3rem;">
+            <h2 style="color: var(--primary-blue); margin-bottom: 2rem; text-align: center;">Community Guidelines</h2>
+
+            <div class="card-grid">
+                <!-- Guideline 1 -->
+                <div class="card">
+                    <div class="card-image">
+                        <div style="font-size: 3rem;">✌️</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Be Respectful</h3>
+                        <p class="card-description">
+                            Treat all community members with kindness and respect. We celebrate diverse opinions and
+                            perspectives.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Guideline 2 -->
+                <div class="card">
+                    <div class="card-image accent">
+                        <div style="font-size: 3rem; color: var(--white);">🛡️</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Keep it Safe</h3>
+                        <p class="card-description">
+                            No harassment, hate speech, or explicit content. We maintain a safe environment for all
+                            ages.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Guideline 3 -->
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, var(--secondary-gray) 0%, var(--secondary-silver) 100%);">
+                        <div style="font-size: 3rem;">📖</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Be Constructive</h3>
+                        <p class="card-description">
+                            Share thoughtful critiques and discuss characters and series respectfully.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Guideline 4 -->
+                <div class="card">
+                    <div class="card-image">
+                        <div style="font-size: 3rem;">🎨</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Credit Creator</h3>
+                        <p class="card-description">
+                            Always credit artists and creators when sharing fan art or content from others.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Guideline 5 -->
+                <div class="card">
+                    <div class="card-image accent">
+                        <div style="font-size: 3rem; color: var(--white);">⚡</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">No Spoilers</h3>
+                        <p class="card-description">
+                            Use spoiler tags when discussing plot points from recent manga or anime episodes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Guideline 6 -->
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, var(--secondary-gray) 0%, var(--secondary-silver) 100%);">
+                        <div style="font-size: 3rem;">🤝</div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Support Each Other</h3>
+                        <p class="card-description">
+                            Encourage other members and celebrate diverse interests within anime and manga fandom.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Join Section -->
+        <section style="margin-top: 3rem;">
+            <h2 style="color: var(--primary-blue); margin-bottom: 2rem;">Why Join Us?</h2>
+
+            <div class="two-panel">
+                <div class="panel-left">
+                    <div>
+                        <h3 style="color: var(--text-dark); margin-bottom: 1rem; font-size: 1.25rem;">A Passionate
+                            Community</h3>
+                        <p style="margin-bottom: 1rem; line-height: 1.8;">
+                            Our community is made up of dedicated manga and anime fans who love discussing characters,
+                            plot lines, and series recommendations. Whether you're a longtime fan or just getting
+                            started, there's a place for you here.
+                        </p>
+
+                        <h3 style="color: var(--text-dark); margin-bottom: 1rem; font-size: 1.25rem; margin-top: 2rem;">
+                            Active Discussions</h3>
+                        <p style="margin-bottom: 1rem; line-height: 1.8;">
+                            Engage in thoughtful discussions about your favorite characters, compare manga versions
+                            with anime adaptations, and discover new series you'll love.
+                        </p>
+
+                        <h3 style="color: var(--text-dark); margin-bottom: 1rem; font-size: 1.25rem; margin-top: 2rem;">
+                            Safe & Welcoming</h3>
+                        <p style="line-height: 1.8;">
+                            We maintain a zero-tolerance policy for harassment and hate speech. All members are
+                            expected to treat each other with respect and kindness.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="panel-right">
+                    <div class="image-panel accent">
+                        <div>
+                            <div style="font-size: 5rem; margin-bottom: 1rem;">🌟</div>
+                            <h3 style="color: var(--white); font-size: 1.5rem; margin-bottom: 1rem;">Join Today!</h3>
+                            <p style="color: var(--white); font-size: 1.1rem; margin-bottom: 2rem;">
+                                Become part of our growing community of manga and anime enthusiasts.
+                            </p>
+                            {% if not user.is_authenticated %}
+                            <a href="{% url 'register' %}" class="btn btn-secondary"
+                                style="color: var(--text-dark); font-weight: 600;">
+                                Create Your Account
+                            </a>
+                            {% else %}
+                            <p style="color: var(--white); font-weight: 500;">
+                                Welcome to the community! 🎉
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Values Section -->
+        <section style="margin-top: 3rem; background-color: var(--white); padding: 2rem; border-radius: 8px; box-shadow: var(--shadow-md);">
+            <h2 style="color: var(--primary-blue); margin-bottom: 2rem; text-align: center;">Our Core Values</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <!-- Value 1 -->
+                <div style="text-align: center;">
+                    <div class="circle lg accent" style="margin-bottom: 1rem;">
+                        <span>❤️</span>
+                    </div>
+                    <h3 style="color: var(--text-dark); margin-bottom: 0.75rem;">Passion</h3>
+                    <p style="color: var(--text-light);">
+                        We love manga and anime as much as you do, and we want to celebrate that passion together.
+                    </p>
+                </div>
+
+                <!-- Value 2 -->
+                <div style="text-align: center;">
+                    <div class="circle lg" style="margin-bottom: 1rem;">
+                        <span>🤲</span>
+                    </div>
+                    <h3 style="color: var(--text-dark); margin-bottom: 0.75rem;">Inclusivity</h3>
+                    <p style="color: var(--text-light);">
+                        Everyone is welcome here, regardless of background, experience level, or favorite series.
+                    </p>
+                </div>
+
+                <!-- Value 3 -->
+                <div style="text-align: center;">
+                    <div class="circle lg accent" style="margin-bottom: 1rem;">
+                        <span>🎯</span>
+                    </div>
+                    <h3 style="color: var(--text-dark); margin-bottom: 0.75rem;">Excellence</h3>
+                    <p style="color: var(--text-light);">
+                        We strive to maintain high standards of quality in our discussions and community interactions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section style="margin-top: 3rem; text-align: center;">
+            {% if not user.is_authenticated %}
+            <h2 style="color: var(--primary-blue); margin-bottom: 1.5rem;">Ready to Join Our Community?</h2>
+            <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem;">
+                Start your journey with thousands of manga and anime fans today.
+            </p>
+            <div>
+                <a href="{% url 'register' %}" class="btn btn-accent" style="margin-right: 1rem; font-size: 1rem;">
+                    Get Started
+                </a>
+                <a href="{% url 'login' %}" class="btn btn-primary" style="font-size: 1rem;">
+                    Already a Member? Login
+                </a>
+            </div>
+            {% else %}
+            <h2 style="color: var(--primary-blue); margin-bottom: 1.5rem;">You're Now Part of Our Community!</h2>
+            <p style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 2rem;">
+                Start exploring discussions and sharing your passion for manga and anime.
+            </p>
+            <a href="{% url 'index' %}" class="btn btn-primary" style="font-size: 1rem;">
+                Go to Home
+            </a>
+            {% endif %}
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Manga Creators Community. All rights reserved.</p>
+        <p>Celebrating manga and anime culture together.</p>
+    </footer>
+</body>
+
+</html>
